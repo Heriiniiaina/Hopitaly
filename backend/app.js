@@ -10,6 +10,7 @@ import userRoute from "./router/userRoute.js"
 import patientRoute from "./router/patientRoute.js"
 import multer from "multer"
 import bodyParser from "body-parser"
+import rendezRoute from "./router/rendezRoute.js"
 config({"path":"./config/config.env"})
 const app = express()
 app.use(cors({
@@ -29,7 +30,7 @@ app.use(fileupload({
 app.use("/api/message",messageRoute)
 app.use("/api/user",userRoute)
 app.use("/api/patient",patientRoute)
-
+app.use("/api/rendez",rendezRoute)
 app.use(errorMidleware)
 
 dbConnect()

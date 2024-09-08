@@ -47,7 +47,7 @@ const userScheme = mongoose.Schema({
     },
     departement:{
         type:String,
-        default: null
+       default:null
     }
 })
 userScheme.pre("save", async function(next){

@@ -20,3 +20,10 @@ import { Message } from "../models/messageSchema.js"
         }
     }
  }
+ export const getAllMessage = async (req,res,next)=>{
+    const messages = await Message.find()
+    res.status(200).json({
+        success:true,
+        messages
+    })
+ }

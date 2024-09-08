@@ -94,14 +94,14 @@ export const addAdmin =async (req,res,next)=>{
 }
 //Inscription doctera
 export const addDoctor = async (req,res,next)=>{
-    const {nom,prenom,email,phone,birth,gender,password} = req.body
-    if(!nom || !prenom || !email || !phone || !birth || !gender || !password)
+    const {nom,prenom,email,phone,birth,gender,password,departement} = req.body
+    if(!nom || !prenom || !email || !phone || !birth || !gender || !password || !departement)
         return next(new errorHandler("Veuillez remplir le formulaire",400))
     const doctor = await User.findOne({email:email})
     if(doctor)
         return next(new errorHandler(`Un ${doctor.role} est deja enregistrer avec cette email`,400))
     try {
-        await User.create({nom,prenom,email,phone,birth,gender,password,role:"Doctor"})
+        await User.create({nom,prenom,email,phone,birth,gender,password,departement,role:"Doctor"})
         res.status(200).json({
             success: true,
             message:"Doctor enregistré"

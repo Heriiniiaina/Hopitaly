@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import validator from "validator";
 
 const rendez = mongoose.Schema({
     nomPatient:{
@@ -39,9 +40,31 @@ const rendez = mongoose.Schema({
         type:String,
         required: true
     },
+    departement:{
+        type:String,
+        required: true
+    },
+    hasVisited:{
+        type:Boolean,
+     
+        default:false
+    },
+    doctorId:{
+        type:mongoose.Schema.ObjectId
+     
+    },
+    patientId:{
+        type:mongoose.Schema.ObjectId
+     
+    },
+    address:{
+        type:String,
+        required:true
+    },
     status:{
         type:String,
-        enum:["Ok","Non ok","En attente"]
+        enum:["Ok","Non ok","En attente"],
+        default:"En attente"
     }
 })
 
