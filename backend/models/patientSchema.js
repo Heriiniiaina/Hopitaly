@@ -1,4 +1,4 @@
-
+import { Password } from "@mui/icons-material";
 import mongoose from "mongoose";
 import bcrypt from "bcrypt"
 import validator from "validator";
@@ -42,12 +42,7 @@ const userScheme = mongoose.Schema({
     },
     role:{
         type:String,
-        required: true,
-        enum:["Admin","Doctor"]
-    },
-    departement:{
-        type:String,
-        default: null
+        default:"Patient"
     }
 })
 userScheme.pre("save", async function(next){
@@ -63,4 +58,4 @@ userScheme.methods.generateJsonWebToken = function(){
         expiresIn: process.env.JWT_EXPIRE
     })
 }
-export const User = mongoose.model("User",userScheme)
+export const Patient = mongoose.model("Patient",userScheme)

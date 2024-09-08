@@ -1,8 +1,31 @@
 import errorHandler from "../error/error.js";
 import {User} from "../models/userSchema.js"
 import { generateToken } from "../utils/jwtToken.js";
+import multer from "multer";
+import fs from "fs"
+import path from "path"
+import {fileURLToPath} from "url"
+
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const pathDir = path.dirname(__dirname)
+const uploadsDir = path.join(pathDir,"uploads")
+if(!fs.existsSync(uploadsDir))
+    fs.mkdirSync(uploadsDir)
+const DiskStorage = multer.diskStorage({
+    filename:(req,file,cb)=>{
+        cb(null,Date.now()+"_"+file.originalname)
+    },
+    destination:(req,file,cb)=>{
+        cb(null,uploadsDir)
+    }
+})
+export const upload = multer({storage:DiskStorage})
 
 //Enregistrememnt patient
+/*
 export const patientRegister = async (req,res,next)=>{
     const {nom,prenom,email,phone,birth,gender,password} = req.body
     if(!nom || !prenom || !email || !phone || !birth || !gender || !password)
@@ -14,11 +37,12 @@ export const patientRegister = async (req,res,next)=>{
     try {
         
         await User.create({nom,prenom,email,phone,birth,gender,password,role:"Patient"})
-        /*generateToken(user,"Inscription reussi",200,res)*/
+        //generateToken(user,"Inscription reussi",200,res)
         res.status(200).json({
             success:true,
             message:"Inscription reussi"
            })
+          console.log(pathDir)
     } catch (error) {
         if(error.name == "ValidationError"){
             const ValidatorError = Object.values(error.errors).map( err=> err.message)
@@ -26,7 +50,7 @@ export const patientRegister = async (req,res,next)=>{
         }
     }
 }
-
+*/
 // Login
 export const login = async (req,res,next)=>{
     const {email,password} = req.body
@@ -115,15 +139,5 @@ export const loggoutAdmin = async (req,res,next)=>{
     }).json({
         success:true,
         message:"Admin deconcté"
-    })
-}
-export const loggoutPatient = async (req,res,next)=>{
-    res.status(200).cookie("patientToken","",{
-        httpOnly:true,
-        expires:new Date(Date.now())
-
-    }).json({
-        success:true,
-        message:"Patient deconcté"
     })
 }
