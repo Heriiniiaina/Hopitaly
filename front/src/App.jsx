@@ -1,30 +1,73 @@
-import { useState } from 'react'
 
-import {createBrowserRouter,RouterProvider} from "react-router-dom"
-import './App.css'
-import Login from './Pages/Login'
-import AdminDahsboard from './Pages/Dashboard/AdminDahsboard'
-import PatientDashboard from './Pages/Dashboard/PatientDashboard'
-import DoctorDashboard from './Pages/Dashboard/DoctorDashboard'
-const routes = createBrowserRouter([
-  {
-    path:"/",
-    element:<Login/>
-  },{
-    path:"/admin",
-    element:<AdminDahsboard/>
-  },{
-      path:"/patient",
-      element:<PatientDashboard/>
-  },
-  {
-    path:"/doctor",
-    element:<DoctorDashboard/>
-  }
-])
-function App() {
-  return <RouterProvider router={routes}/>
+//pages
+
+import PatientPage from "./Pages/userPatient/Patient.jsx"
+import DoctorPage from "./Pages/userDoctor/Doctor.jsx"
+import Admin from "./Pages/admin/Admin.jsx"
+import PatientDossierM from "./Pages/userPatient/PatientDossierM.jsx"
+
+//style 
+import "./App.css"
+
+import LoginAdmin from "./Pages/Login/AdminLogin.jsx"
+import LoginUser from './Pages/Login/LoginUser.jsx'
+import PatientDash from "./Pages/PatientDash/PatientDash.jsx"
+
+let AppLog = ()=> {
+
+  return (
+    <LoginAdmin />
+  )
 }
 
- 
-export default App
+let AppUserLog = () => {
+  return (
+    <LoginUser />
+  )
+}
+
+
+//After LOG
+let AppPatientPage = () => {
+  return (
+    <PatientDash/>
+  )
+}
+
+let AppPatientDossierM = () => {
+  return (
+    <PatientDossierM/>
+  )
+}
+
+let AppDoctorPage = () => {
+  return (
+    <DoctorPage />
+  )
+}
+
+let AppAdminPage = () => {
+  return (
+    <Admin />
+  )
+}
+
+let AppMain = ()=> {
+
+  return (
+    <>
+      <p>je suis main</p>
+    </>
+  )
+}
+
+
+export default {
+  AppLog,
+  AppUserLog,
+  AppMain,
+  AppPatientPage,
+  AppDoctorPage,
+  AppAdminPage,
+  AppPatientDossierM,
+};

@@ -1,0 +1,53 @@
+
+.form h3{
+    margin: 16px 0;
+    font-size: 18px;
+    margin-bottom: 24px;
+}
+ #form1{
+    display: grid;
+    grid-template-columns: 1fr 1fr 150px;
+}
+
+
+ form .inlab{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: flex-start;
+    padding: 20px 36px;
+}
+ form .twoinlab{
+    display: flex;
+    flex-grow: 1;
+    align-items: flex-start;
+}
+
+ form .inlab input{
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    
+}
+
+ form .inlab label{
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+
+form .inlab #submit{
+    background: #010f22;
+    color: #fff;
+    font-size: 14px;
+}
+
+
+
+.dossier{
+    display: flex;
+}
